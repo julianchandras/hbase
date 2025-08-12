@@ -23,12 +23,20 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.yetus.audience.InterfaceAudience;
 
 import org.apache.hbase.thirdparty.org.apache.commons.collections4.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The POJO equivalent of HBaseProtos.SnapshotDescription
  */
 @InterfaceAudience.Public
 public class SnapshotDescription {
+  private static final Logger LOG = LoggerFactory.getLogger(SnapshotDescription.class);
+  
+  public void logCreationTime(String prefix) {
+    LOG.debug("{} Snapshot {} creation time: {}", prefix, name, creationTime);
+  }
+
   private final String name;
   private final TableName table;
   private final SnapshotType snapShotType;
